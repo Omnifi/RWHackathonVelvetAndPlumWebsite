@@ -3,15 +3,15 @@
  * Home page.
  */
 
-const Product = require('../models/Products');
+const Location = require('../models/Locations');
 
 exports.index = (req, res) => {
 
-    Product.find({}).exec(function(err, products) {
+    Location.find({}).exec(function(err, locations) {
         if (err) return next(err);
         res.json({
             success: true,
-            products: products
+            locations: locations
         });
     });
 
