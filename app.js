@@ -174,7 +174,7 @@ app.get('/api/pinterest', passportConfig.isAuthenticated, passportConfig.isAutho
 app.post('/api/pinterest', passportConfig.isAuthenticated, passportConfig.isAuthorized, apiController.postPinterest);
 app.get('/api/google-maps', apiController.getGoogleMaps);
 app.get('/api/products', require('./controllers/products').index);
-app.get('/api/locations', require('./controllers/locations').index);
+app.get('/api/product/:id', require('./controllers/products').one);
 
 /**
  * OAuth authentication routes. (Sign in)

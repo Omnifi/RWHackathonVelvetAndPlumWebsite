@@ -14,5 +14,9 @@ exports.index = (req, res) => {
             products: products
         });
     });
+};
 
+exports.one = (req, res) => {
+
+    res.end('test');
 };
