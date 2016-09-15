@@ -170,6 +170,8 @@ app.post('/api/pinterest', passportConfig.isAuthenticated, passportConfig.isAuth
 app.get('/api/google-maps', apiController.getGoogleMaps);
 app.get('/api/products', require('./controllers/products').index);
 app.get('/api/product/:product_id', require('./controllers/products').one);
+app.get('/api/facebook/login/', require('./controllers/facebook').index);
+app.get('/api/facebook/login/:user_id', require('./controllers/facebook').index);
 
 /**
  * OAuth authentication routes. (Sign in)
