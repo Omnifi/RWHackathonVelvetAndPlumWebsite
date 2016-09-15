@@ -10,29 +10,27 @@ block content
                     <div class="col-md-5 grid">
                         <div class="flexslider">
                             <ul class="slides">
-                                <li data-thumb="/images/si.jpg">
-                                    <div class="thumb-image"> <img src="/images/si.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                                <li data-thumb="#{product.img}">
+                                    <div class="thumb-image"> <img src="#{product.img}" data-imagezoom="true" class="img-responsive"> </div>
                                 </li>
-                                <li data-thumb="/images/si1.jpg">
-                                    <div class="thumb-image"> <img src="/images/si1.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                                <li data-thumb="#{product.img}">
+                                    <div class="thumb-image"> <img src="#{product.img}" data-imagezoom="true" class="img-responsive"> </div>
                                 </li>
-                                <li data-thumb="/images/si2.jpg">
-                                    <div class="thumb-image"> <img src="/images/si2.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                                <li data-thumb="#{product.img}">
+                                    <div class="thumb-image"> <img src="#{product.img}" data-imagezoom="true" class="img-responsive"> </div>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-7 single-top-in">
-                        <div class="span_2_of_a1 simpleCart_shelfItem">
-                            <h3>Nam liber tempor cum</h3>
-                            <p class="in-para"> There are many variations of passages of Lorem Ipsum.</p>
+                        <div class="span_2_of_a1">
+                            <h3>#{product.name}</h3>
+                            <p class="in-para">#{product.desc}</p>
                             <div class="price_single">
-                                <span class="reducedfrom item_price">£140.00</span>
-                                <a href="#">click for offer</a>
+                                <span class="reducedfrom item_price">£#{product.price}</span>
                                 <div class="clearfix"></div>
                             </div>
                             <h4 class="quick">Quick Overview:</h4>
-                            <p class="quick_desc"> Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; es</p>
                             <div class="quantity">
                                 <div class="quantity-select">
                                     <div class="entry value-minus">&nbsp;</div>

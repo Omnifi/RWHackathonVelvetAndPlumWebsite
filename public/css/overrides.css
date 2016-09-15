@@ -77,3 +77,10 @@ svg {
     bottom: auto;
     top: 40%;
 }
+.mid-2 {
+    padding-top: 0.5em;
+}
+
+.item-grid{
+    margin-bottom:25px;
+}

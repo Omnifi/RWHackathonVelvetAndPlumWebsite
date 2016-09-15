@@ -77,7 +77,8 @@ app.use(expressValidator());
 app.use(session({
   resave: true,
   saveUninitialized: true,
-  secret: process.env.SESSION_SECRET,
+  secret: process.env.SESSION_SECRET || 'Your mum',
+  cookie:{maxAge:3000},
   store: new MongoStore({
     url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
     autoReconnect: true

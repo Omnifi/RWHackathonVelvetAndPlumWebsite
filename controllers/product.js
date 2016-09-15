@@ -20,7 +20,7 @@ exports.index = (req, res, next) => {
             if (err) return next(err);
             res.render('product', {
                 title: 'Product',
-                product: product
+                product: product[0]
             });
         });
     }
