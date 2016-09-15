@@ -111,6 +111,30 @@ app.use(function(req, res, next) {
   next();
 });
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
+app.use(function(req, res, next) {
+    if (req.session.basket && req.session.basket.length) {
+        var total = 0,
+          basketitems = [];
+        const Product = require('./models/Products');
+        Product.find({
+            _id: {
+                $in: req.session.basket.map(function(o) {
+                    return mongoose.Types.ObjectId(o); })
+            }
+        }, function(err, products) {
+            if(products) res.locals.basketitems = products;
+            products.forEach(function(product){
+              total = total + Number(product.price);
+            });
+            res.locals.baskettotal = String(total);
+            res.locals.basketsize = products.length;
+            res.locals.basketitems = products;
+            next();
+        });
+    } else {
+        next()
+    }
+});
 
 /**
  * Primary app routes.
@@ -118,7 +142,9 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
 app.get('/', homeController.index);
 app.get('/product/', productController.index);
 app.get('/product/:product_id', productController.index);
+app.get('/product/add/:product_id', productController.add);
 app.get('/checkout', checkoutController.index);
+app.get('/checkout/remove/:product_id', checkoutController.remove);
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);
