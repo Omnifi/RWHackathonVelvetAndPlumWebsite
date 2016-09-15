@@ -10,7 +10,7 @@ const chalk = require('chalk');
 const errorHandler = require('errorhandler');
 const lusca = require('lusca');
 const dotenv = require('dotenv');
-const MongoStore = require('connect-mongo')(session);
+//const MongoStore = require('connect-mongo')(session);
 const flash = require('express-flash');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -19,6 +19,9 @@ const expressValidator = require('express-validator');
 const sass = require('node-sass-middleware');
 const multer = require('multer');
 const upload = multer({ dest: path.join(__dirname, 'uploads') });
+const mongoStore = require('connect-mongo/es5')({
+        session: session
+    });
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -74,16 +77,42 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
-app.use(session({
-  resave: true,
-  saveUninitialized: true,
-  secret: process.env.SESSION_SECRET || 'Your mum',
-  cookie  : { maxAge  : new Date(Date.now() + (20 * 1000)) },
-  store: new MongoStore({
-    url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
-    autoReconnect: true
-  })
-}));
+
+
+//session
+var sessionObj = {
+    saveUninitialized: true,
+    resave: true,
+    secret: process.env.SESSION_SECRET || 'Your mum',
+    name: 'Velvet And Plum Session'
+}
+
+if (process.env.MONGOHQ_URL) {
+    // db
+    sessionObj.cookie = {
+        path: '/',
+        httpOnly: false,
+        secure: false,
+        maxAge: 20000 //20s
+    }
+    sessionObj.store = new mongoStore({
+        url: process.env.MONGOHQ_URL
+    })
+}
+// bootstrap session
+app.use(session(sessionObj))
+
+
+// app.use(session({
+//   resave: true,
+//   saveUninitialized: true,
+//   secret: process.env.SESSION_SECRET || 'Your mum',
+//   cookie  : { maxAge  : new Date(Date.now() + (20 * 1000)) },
+//   store: new MongoStore({
+//     url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
+//     autoReconnect: true
+//   })
+// }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
