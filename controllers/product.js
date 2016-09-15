@@ -36,14 +36,22 @@ exports.add = (req, res, next) => {
         Product.find({ _id: req.params.product_id }).exec(function(err, product) {
             if (product[0] && req.user) {
                 var form = {
-                        'user_id': String(req.user._id),
-                        'name': product[0].name,
-                        'nsfw': product[0].nsfw,
-                        'trend': product[0].trend,
-                        'product_id': product[0].id
-                    }
-                request.post({ url: 'https://rwhackathonbasketcase.herokuapp.com/api/product/add', form: form })
-                //request.post({ url: 'http://localhost:3001/api/product/add', form: form })
+                    'user_id': String(req.user._id),
+                    'name': product[0].name,
+                    'nsfw': product[0].nsfw,
+                    'trend': product[0].trend,
+                    'product_id': product[0].id
+                }
+                request.post({
+                        url: 'https://rwhackathonbasketcase.herokuapp.com/api/product/add',
+                        form: form,
+                        function(err, httpResponse, body) {
+                            console.log(err, body)
+                        }
+                    })
+                    //request.post({ url: 'http://localhost:3001/api/product/add', form: form, function(err,httpResponse,body){
+                    //console.log(err, body)
+                    // } })
             }
         });
     }
