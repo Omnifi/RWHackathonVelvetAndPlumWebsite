@@ -3,6 +3,11 @@ svg {
     height: auto;
 }
 
+.fb-profile-pic {
+    max-width: 20px;
+    margin: 0 5px;
+}
+
 .h_menu4 {
     z-index: 9999;
 }
@@ -38,9 +43,9 @@ svg {
     display: block;
 }
 
-.cta_plus{
-	width:40px;
-	height:auto;
+.cta_plus {
+    width: 40px;
+    height: auto;
 }
 
 @media (min-width:600px) {
