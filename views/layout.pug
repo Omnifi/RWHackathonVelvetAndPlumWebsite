@@ -1,24 +1,76 @@
-doctype html
-html
-  head
-    meta(charset='utf-8')
-    meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    meta(name='theme-color' content='#4DA5F4')
-    meta(name='csrf-token', content=_csrf)
-    title #{title} - Hackathon Starter
-    link(rel='shortcut icon', href='/favicon.png')
-    link(rel='stylesheet', href='/css/main.css')
+<!DOCTYPE html>
+<html>
 
-  body
+<head>
+    <title>#{title} - Velvet and Plum</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=A0Rejx4BOa">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png?v=A0Rejx4BOa" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png?v=A0Rejx4BOa" sizes="16x16">
+    <link rel="manifest" href="/manifest.json?v=A0Rejx4BOa">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=A0Rejx4BOa" color="#2d3d50">
+    <link rel="shortcut icon" href="/favicon.ico?v=A0Rejx4BOa">
+    <meta name="theme-color" content="#2d3d50">
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/main.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style4.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/jstarbox.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen" charset="utf-8">
+    <link href="css/overrides.css" rel="stylesheet" type="text/css" media="all" />
+    script.
+      addEventListener("load", function() {
+          setTimeout(hideURLbar, 0);
+      }, false);
+
+      function hideURLbar() {
+          window.scrollTo(0, 1);
+      }
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jstarbox.js"></script>
+    script.
+      jQuery(function() {
+          jQuery('.starbox').each(function() {
+              var starbox = jQuery(this);
+              starbox.starbox({
+                  average: starbox.attr('data-start-value'),
+                  changeable: starbox.hasClass('unchangeable') ? false : starbox.hasClass('clickonce') ? 'once' : true,
+                  ghosting: starbox.hasClass('ghosting'),
+                  autoUpdateAverage: starbox.hasClass('autoupdate'),
+                  buttons: starbox.hasClass('smooth') ? false : starbox.attr('data-button-count') || 5,
+                  stars: starbox.attr('data-star-count') || 5
+              }).bind('starbox-value-changed', function(event, value) {
+                  if (starbox.hasClass('random')) {
+                      var val = Math.random();
+                      starbox.next().text(' ' + val);
+                      return val;
+                  }
+              })
+          });
+      });
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.chocolat.js"></script>
+</head>
+
+<body>
+
+    include partials/flash
+
     include partials/header
 
-    .container
-      include partials/flash
-      block content
+    block content
 
     include partials/footer
 
-    script(src='/js/lib/jquery-2.2.4.min.js')
-    script(src='/js/lib/bootstrap.min.js')
-    script(src='/js/main.js')
+    script.
+      $(function() {
+          $('a.picture').Chocolat();
+      });
+
+</body>
+
+</html>

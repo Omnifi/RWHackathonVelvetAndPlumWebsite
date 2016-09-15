@@ -19,8 +19,6 @@ const expressValidator = require('express-validator');
 const sass = require('node-sass-middleware');
 const multer = require('multer');
 const upload = multer({ dest: path.join(__dirname, 'uploads') });
-const exphbs = require('express-handlebars');
-const helpers = require('handlebars-helpers')();
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -61,16 +59,8 @@ mongoose.connection.on('error', () => {
  * Express configuration.
  */
 app.set('port', process.env.PORT || 3000);
-var hbs = exphbs({
-    defaultLayout: 'main',
-    layoutsDir: path.join(__dirname, '/views/layouts'),
-    partialsDir: path.join(__dirname, '/views/partials'),
-    extname: '.hbs',
-    helpers: helpers
-})
-app.engine('.hbs', hbs);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', '.hbs');
+app.set('view engine', 'pug');
 
 
 app.use(compression());
