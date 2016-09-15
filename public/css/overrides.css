@@ -4,7 +4,7 @@ svg {
 }
 
 .fb-profile-pic {
-    max-width: 20px;
+    max-width: 14px;
     margin: 0 5px;
 }
 
@@ -59,4 +59,21 @@ svg {
 
 .footer {
     margin-top: 1.5em;
+}
+
+.single {
+    margin-bottom: 50px;
+}
+
+.add-check {
+    position: relative;
+}
+
+.ring-in .sed{
+    margin-top: 20px;
+}
+
+.close1 {
+    bottom: auto;
+    top: 40%;
 }

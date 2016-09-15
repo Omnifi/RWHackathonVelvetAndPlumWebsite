@@ -1,0 +1,76 @@
+extends layout
+
+block content
+
+  .content
+    .container
+        <div class="single">
+            <div class="container">
+                <div class="col-md-9">
+                    <div class="col-md-5 grid">
+                        <div class="flexslider">
+                            <ul class="slides">
+                                <li data-thumb="/images/si.jpg">
+                                    <div class="thumb-image"> <img src="/images/si.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                                </li>
+                                <li data-thumb="/images/si1.jpg">
+                                    <div class="thumb-image"> <img src="/images/si1.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                                </li>
+                                <li data-thumb="/images/si2.jpg">
+                                    <div class="thumb-image"> <img src="/images/si2.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-7 single-top-in">
+                        <div class="span_2_of_a1 simpleCart_shelfItem">
+                            <h3>Nam liber tempor cum</h3>
+                            <p class="in-para"> There are many variations of passages of Lorem Ipsum.</p>
+                            <div class="price_single">
+                                <span class="reducedfrom item_price">£140.00</span>
+                                <a href="#">click for offer</a>
+                                <div class="clearfix"></div>
+                            </div>
+                            <h4 class="quick">Quick Overview:</h4>
+                            <p class="quick_desc"> Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; es</p>
+                            <div class="quantity">
+                                <div class="quantity-select">
+                                    <div class="entry value-minus">&nbsp;</div>
+                                    <div class="entry value"><span>1</span></div>
+                                    <div class="entry value-plus active">&nbsp;</div>
+                                </div>
+                            </div>
+                            <!--quantity-->
+                            script.
+                                $('.value-plus').on('click', function() {
+                                    var divUpd = $(this).parent().find('.value'),
+                                        newVal = parseInt(divUpd.text(), 10) + 1;
+                                    divUpd.text(newVal);
+                                });
+
+                                $('.value-minus').on('click', function() {
+                                    var divUpd = $(this).parent().find('.value'),
+                                        newVal = parseInt(divUpd.text(), 10) - 1;
+                                    if (newVal >= 1) divUpd.text(newVal);
+                                });
+                            <a href="#" class="add-to item_add hvr-skew-backward">Add to cart</a>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <script src="/js/imagezoom.js"></script>
+        <script defer src="/js/jquery.flexslider.js"></script>
+        <link rel="stylesheet" href="/css/flexslider.css" type="text/css" media="screen" />
+        script.
+            $(window).load(function() {
+                $('.flexslider').flexslider({
+                    animation: "slide",
+                    controlNav: "thumbnails"
+                });
+            });
+
+
